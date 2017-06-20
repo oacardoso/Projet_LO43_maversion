@@ -1,4 +1,3 @@
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.File;
@@ -101,79 +100,7 @@ public class Tournee_Bus {
                 }
                 
     
-                Fenetre fen = new Fenetre();
-                //CHAUFFEUR
-                JTable tbl = new JTable();
-                DefaultTableModel dtm = new DefaultTableModel(0,0);
-                JTable tbl2 = new JTable();
-                DefaultTableModel dtm2 = new DefaultTableModel(0,0);
-    
-                String header[] = new String[] {"Numero Chauffeur","Worker Time","IdleTime","UnderTime","Cost"};
-                dtm.setColumnIdentifiers(header);
-                tbl.setModel(dtm);String header2[] = new String[] {"Numéro Tache","Heure Depart","Heure Arrivee","Lieu Depart","Lieu Arrivé","Numéro chauffeur"};
-                dtm2.setColumnIdentifiers(header2);
-                tbl2.setModel(dtm2);
-                for(int i = 0;i<Ontime.size();i++){
-                    dtm.addRow(new Object[] {Ontime.get(i).Numero,Ontime.get(i).Worker_time_sun,Ontime.get(i).IdleTime,Ontime.get(i).UnderTime,Ontime.get(i).Cost});
-                    for(int ii = 0;ii<Ontime.get(i).Litache.size();ii++){
-                        
-                        dtm2.addRow(new Object[] {Ontime.get(i).Litache.get(ii),Taff.get(Ontime.get(i).Litache.get(ii)).Time_init,Taff.get(Ontime.get(i).Litache.get(ii)).Time_Finish,Taff.get(Ontime.get(i).Litache.get(ii)).Lieu_init,Taff.get(Ontime.get(i).Litache.get(ii)).Lieu_finish,Taff.get(Ontime.get(i).Litache.get(ii)).chauffeur.Numero});
-                    
-                }
-                    
-                    }
-                
-                fen.getContentPane().add(tbl.getTableHeader(), BorderLayout.NORTH);
-                fen.getContentPane().add(tbl, BorderLayout.CENTER);
-                fen.getContentPane().add(new JScrollPane(tbl));
-                fen.getContentPane().add(tbl2.getTableHeader(), BorderLayout.NORTH);
-                fen.getContentPane().add(tbl2, BorderLayout.CENTER);
-                fen.getContentPane().add(new JScrollPane(tbl2));
-                
-                
-                
-                
-                
-                
-                
-                
-                   //TACHE
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                TableColumn column = null;
-                for (int i = 0; i < 5; i++) {
-                    column = tbl.getColumnModel().getColumn(i);
-                    if (i == 0) {
-                        column.setPreferredWidth(100); //third column is bigger
-                    } else {
-                        column.setPreferredWidth(50);
-                    }
-                }
-                TableColumn columnn = null;
-                for (int i = 0; i < 6; i++) {
-                    columnn = tbl2.getColumnModel().getColumn(i);
-                    if ((i == 0) || (i == 1)||(i == 2)||(i == 5)){
-                        columnn.setPreferredWidth(100); //third column is bigger
-                    } else {
-                        columnn.setPreferredWidth(50);
-                    }
-                }
-                
-                
-                
-                
-                
+                Fenetre fen = new Fenetre(Ontime,Taff);
                 fen.setVisible(true);
                 
                 System.out.println("SALUUUUUT");
