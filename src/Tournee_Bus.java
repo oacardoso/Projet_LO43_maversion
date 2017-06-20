@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
 
 public class Tournee_Bus {
 	public static void main (String[] args){
@@ -107,28 +105,51 @@ public class Tournee_Bus {
                 //CHAUFFEUR
                 JTable tbl = new JTable();
                 DefaultTableModel dtm = new DefaultTableModel(0,0);
+                JTable tbl2 = new JTable();
+                DefaultTableModel dtm2 = new DefaultTableModel(0,0);
     
                 String header[] = new String[] {"Numero Chauffeur","Worker Time","IdleTime","UnderTime","Cost"};
                 dtm.setColumnIdentifiers(header);
-                tbl.setModel(dtm);
+                tbl.setModel(dtm);String header2[] = new String[] {"Numéro Tache","Heure Depart","Heure Arrivee","Lieu Depart","Lieu Arrivé","Numéro chauffeur"};
+                dtm2.setColumnIdentifiers(header2);
+                tbl2.setModel(dtm2);
                 for(int i = 0;i<Ontime.size();i++){
                     dtm.addRow(new Object[] {Ontime.get(i).Numero,Ontime.get(i).Worker_time_sun,Ontime.get(i).IdleTime,Ontime.get(i).UnderTime,Ontime.get(i).Cost});
+                    for(int ii = 0;ii<Ontime.get(i).Litache.size();ii++){
+                        
+                        dtm2.addRow(new Object[] {Ontime.get(i).Litache.get(ii),Taff.get(Ontime.get(i).Litache.get(ii)).Time_init,Taff.get(Ontime.get(i).Litache.get(ii)).Time_Finish,Taff.get(Ontime.get(i).Litache.get(ii)).Lieu_init,Taff.get(Ontime.get(i).Litache.get(ii)).Lieu_finish,Taff.get(Ontime.get(i).Litache.get(ii)).chauffeur.Numero});
+                    
                 }
+                    
+                    }
+                
                 fen.getContentPane().add(tbl.getTableHeader(), BorderLayout.NORTH);
                 fen.getContentPane().add(tbl, BorderLayout.CENTER);
                 fen.getContentPane().add(new JScrollPane(tbl));
-                JTable tbl2 = new JTable();
-                DefaultTableModel dtm2 = new DefaultTableModel(0,0);
-                   //TACHE
-                String header2[] = new String[] {"Numéro Tache","Heure Depart","Heure Arrivee","Lieu Depart","Lieu Arrivé","Numéro chauffeur"};
-                dtm2.setColumnIdentifiers(header2);
-                tbl2.setModel(dtm2);
-                for(int i = 0;i<Taff.size();i++){
-                    dtm2.addRow(new Object[] {i+1,Taff.get(i).Time_init,Taff.get(i).Time_Finish,Taff.get(i).Lieu_init,Taff.get(i).Lieu_finish,Taff.get(i).chauffeur.Numero});
-                }
                 fen.getContentPane().add(tbl2.getTableHeader(), BorderLayout.NORTH);
                 fen.getContentPane().add(tbl2, BorderLayout.CENTER);
                 fen.getContentPane().add(new JScrollPane(tbl2));
+                
+                
+                
+                
+                
+                
+                
+                
+                   //TACHE
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 TableColumn column = null;
                 for (int i = 0; i < 5; i++) {
@@ -155,7 +176,7 @@ public class Tournee_Bus {
                 
                 fen.setVisible(true);
                 
-                
+                System.out.println("SALUUUUUT");
                 
 }
 
