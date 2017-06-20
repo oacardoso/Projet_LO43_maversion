@@ -1,14 +1,11 @@
-import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
+import javax.annotation.processing.Filer;
+import javax.swing.JFileChooser;
 
 public class Tournee_Bus {
 	public static void main (String[] args){
@@ -20,9 +17,23 @@ public class Tournee_Bus {
 		int huit = 480; // huit heures de travail
 		int dix = 600; // 10 h de travail
 		int flag = 0; //si tache restante = 0
+		String File ;
+                JFileChooser fc = new JFileChooser ();
+                
+                JFileChooser dialogue = new JFileChooser();
+             
+                // affichage
+                dialogue.showOpenDialog(null);
+             
+                // récupération du fichier sélectionné
+                File trye = dialogue.getSelectedFile();
+                File = trye.getAbsolutePath();
+            
+
+                
+		try {readFile(File, Taff ) ;} //Lecture fichier avec completion liste tache
 		
-		try {readFile("C:\\Users\\miiixx-94\\Documents\\Java Proj\\LO43\\sujet_habillage_tournees\\Instance_1\\Instance_1.txt", Taff ) ;} //Lecture fichier avec completion liste tache
-		catch (Exception ex){
+                catch (Exception ex){
                     System.err.println("Veuillez changer le nom du fichier");
                     }
                 
@@ -99,11 +110,15 @@ public class Tournee_Bus {
                     Ontime.get(i).affiche_chauffeur();
                 }
                 
-    
-                Fenetre fen = new Fenetre(Ontime,Taff);
-                fen.setVisible(true);
                 
-                System.out.println("SALUUUUUT");
+                
+                
+                
+                
+                Fenetre fen = new Fenetre(Ontime,Taff);
+                                fen.pack();
+                
+                fen.setVisible(true);
                 
 }
 
