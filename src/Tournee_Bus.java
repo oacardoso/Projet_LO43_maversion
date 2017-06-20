@@ -18,7 +18,6 @@ public class Tournee_Bus {
 		int dix = 600; // 10 h de travail
 		int flag = 0; //si tache restante = 0
 		String File ;
-                JFileChooser fc = new JFileChooser ();
                 
                 JFileChooser dialogue = new JFileChooser();
              
