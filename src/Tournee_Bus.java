@@ -1,9 +1,17 @@
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 
 public class Tournee_Bus {
 	public static void main (String[] args){
@@ -94,8 +102,60 @@ public class Tournee_Bus {
                     Ontime.get(i).affiche_chauffeur();
                 }
                 
+    
                 Fenetre fen = new Fenetre();
+                //CHAUFFEUR
+                JTable tbl = new JTable();
+                DefaultTableModel dtm = new DefaultTableModel(0,0);
+    
+                String header[] = new String[] {"Numero Chauffeur","Worker Time","IdleTime","UnderTime","Cost"};
+                dtm.setColumnIdentifiers(header);
+                tbl.setModel(dtm);
+                for(int i = 0;i<Ontime.size();i++){
+                    dtm.addRow(new Object[] {Ontime.get(i).Numero,Ontime.get(i).Worker_time_sun,Ontime.get(i).IdleTime,Ontime.get(i).UnderTime,Ontime.get(i).Cost});
+                }
+                fen.getContentPane().add(tbl.getTableHeader(), BorderLayout.NORTH);
+                fen.getContentPane().add(tbl, BorderLayout.CENTER);
+                fen.getContentPane().add(new JScrollPane(tbl));
+                JTable tbl2 = new JTable();
+                DefaultTableModel dtm2 = new DefaultTableModel(0,0);
+                   //TACHE
+                String header2[] = new String[] {"Numéro Tache","Heure Depart","Heure Arrivee","Lieu Depart","Lieu Arrivé","Numéro chauffeur"};
+                dtm2.setColumnIdentifiers(header2);
+                tbl2.setModel(dtm2);
+                for(int i = 0;i<Taff.size();i++){
+                    dtm2.addRow(new Object[] {i+1,Taff.get(i).Time_init,Taff.get(i).Time_Finish,Taff.get(i).Lieu_init,Taff.get(i).Lieu_finish,Taff.get(i).chauffeur.Numero});
+                }
+                fen.getContentPane().add(tbl2.getTableHeader(), BorderLayout.NORTH);
+                fen.getContentPane().add(tbl2, BorderLayout.CENTER);
+                fen.getContentPane().add(new JScrollPane(tbl2));
+                
+                TableColumn column = null;
+                for (int i = 0; i < 5; i++) {
+                    column = tbl.getColumnModel().getColumn(i);
+                    if (i == 0) {
+                        column.setPreferredWidth(100); //third column is bigger
+                    } else {
+                        column.setPreferredWidth(50);
+                    }
+                }
+                TableColumn columnn = null;
+                for (int i = 0; i < 6; i++) {
+                    columnn = tbl2.getColumnModel().getColumn(i);
+                    if ((i == 0) || (i == 1)||(i == 2)||(i == 5)){
+                        columnn.setPreferredWidth(100); //third column is bigger
+                    } else {
+                        columnn.setPreferredWidth(50);
+                    }
+                }
+                
+                
+                
+                
+                
                 fen.setVisible(true);
+                
+                
                 
 }
 

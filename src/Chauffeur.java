@@ -7,9 +7,9 @@ public class Chauffeur {
 
 	int Worker_time_sun;
 
-	private int UnderTime ;
+	int UnderTime ;
 
-	private int IdleTime;
+	int IdleTime;
 
 	int Cost ;
 	
